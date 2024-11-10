@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+      let responseIndex = 0;  // Initialize index to track responses
+      const responses = [
+    "In the town of Pollachi, where life flowed between the quiet hills and vibrant fields, two lives were destined to intertwine, though they didn’t yet know it. Sanjay and Nethra were like two stars in separate constellations, shining bright in their own worlds but somehow feeling the same longing, the same sense of loneliness in the crowds around them.",
+    "Sanjay attended PGHS, where he was known for his fiery nature. His temper was quick, and his sensitivity often hid a heart full of care and loyalty, though only a few knew just how deeply he felt things. Nethra, on the other hand, went to Annai Abirami, where she was the gentle soul of her class—a true embodiment of kindness and grace, always seeing the good in people, even when they hurt her.",
+    "To those around them, they appeared content, as though they were enjoying life as any teenager should. But deep down, both Sanjay and Nethra knew that the people around them were wearing masks, hiding true intentions behind fake smiles and fleeting friendships. They longed for something more, something real.",
+    "Years passed, and while friends came and went, neither Sanjay nor Nethra found the connection they so desperately desired. When high school ended, both set their sights on college, each wondering if this new chapter would bring them the friend they had been searching for. By some twist of fate, both ended up at the same college. But they didn’t meet right away, nor did they know the other existed.",
+    "Different groups, different schedules, and still the same longing. One day, they were introduced by a mutual friend, a girl who had unknowingly woven their threads together in that first, small meeting. Their first interactions were casual—a simple “Vaaga, Pogaa” as they passed each other, an indifferent “hello” or “goodbye.” But something lingered between them, an unexplainable familiarity.",
+    "Within a week, those indifferent greetings turned into softer “Vaa, Poo” exchanges. And soon enough, their names became playful—“Eruma” (buffalo) or just “D” and “Da”—a gentle mockery that only close friends could share. As the days melted into months, a beautiful friendship blossomed.",
+    "They became “Thangoo” and “Chello,” endearing nicknames that held stories and secrets only they knew. They were like two halves of the same soul, bound together by an understanding so profound that words were sometimes unnecessary. The smallest jokes could send them into fits of laughter, and the most trivial disagreements could lead to silent, dramatic pauses that always ended in forgiveness.",
+    "Sanjay’s fiery spirit clashed with Nethra’s gentleness often enough, but every fight brought them closer, teaching them more about each other’s vulnerabilities, about the depths of loyalty and trust. When one of them was hurt, the other was there, ready to listen, to console, to hold hands and offer the unspoken promise: “I am here. I am always here.”",
+    "Their WhatsApp chats overflowed like an endless river, a testament to their shared lives. Every milestone, every heartbreak, every small joy was marked in those messages. It was as though they were speaking a secret language, a rhythm only they could hear, where even silence felt warm and comforting.",
+    "Through each chat, they shared not just words but pieces of themselves, growing closer with each passing moment. They spoke of their fears, of dreams they dared not share with others, and of the struggles they faced in silence. They found comfort in holding hands, a gesture that meant more than anything words could convey.",
+    "In each other’s touch, they found a safe haven, a steadying presence that said, “You are not alone.” One night, under a vast, star-studded sky, they made a promise. Sitting beside each other, sharing the weight of everything they had been through, they vowed that their friendship would go beyond life itself, beyond anything this world could throw at them.",
+    "“You will always be my Thangoo,” Nethra said softly, her voice filled with affection. Sanjay, grinning yet touched, replied, “And you’ll forever be my Chello.” Years drifted by, seasons came and went, and their friendship only grew deeper, strengthened by the storms they weathered together and the laughter they shared.",
+    "In Sanjay, Nethra found the strength she sometimes lacked; in Nethra, Sanjay found the gentleness that softened his edges. Together, they were complete, having found the rarest and truest form of companionship—a friendship that was, above all, real. No matter where life would take them, they knew this: they had each found a soulmate in the other, a friend who would stand beside them through eternity.",
+    "They had made their promise, and it was one they would keep. Even when the stars themselves would fade, Thangoo and Chello would still be there, hand in hand, a bond forever beyond words, beyond time, and beyond death."
+];
+
+    
+      // Function to add a new message when the microphone icon is clicked
+      function checkMessage() {
+        const input = document.getElementById('messageInput').value;
+    
+        // Check if the input message is "mm mm aprm"
+        if (input === 'mm mm aprm') {
+          // Get the chat area container
+          const chatArea = document.getElementById('chatArea');
+    
+          // Create and append the first message ("mm mm aprm") aligned to the right
+          const newMessage = document.createElement('div');
+          newMessage.className = 'flex justify-end';  // Align the message to the right
+          newMessage.innerHTML = `
+            <div class="text-white p-3 rounded-lg max-w-xs send">
+              <div>mm mm aprm</div>
+              <div class="text-right text-xs text-gray-400">5:06 PM</div>
+            </div>
+          `;
+          chatArea.appendChild(newMessage);
+    
+          // Scroll to the bottom of the chat area after the new message is added
+          chatArea.scrollTop = chatArea.scrollHeight;
+    
+          // Delay the bot response
+          setTimeout(() => {
+            // Get the next response from the responses array
+            const responseMessage = responses[responseIndex];
+    
+            // Create and append the response message aligned to the left
+            const messageResponse = document.createElement('div');
+            messageResponse.className = 'flex justify-start';  // Align the response to the left
+            messageResponse.innerHTML = `
+              <div class="text-white p-3 rounded-lg max-w-xs res">
+                <div>${responseMessage}</div>
+                <div class="text-right text-xs text-gray-400">5:07 PM</div>
+              </div>
+            `;
+            chatArea.appendChild(messageResponse);
+    
+            // Update the index for the next response
+            responseIndex = (responseIndex + 1) % responses.length;
+    
+            // Scroll to the bottom of the chat area after the response is added
+            chatArea.scrollTop = chatArea.scrollHeight;
+          }, 1000); // Delay of 1000ms (1 second)
+    
+          // Clear the input after sending the message and reset it back to "mm mm aprm"
+          document.getElementById('messageInput').value = 'mm mm aprm';
+        }
+      }
+
+      // Function to send the initial message when the page loads
+      function initMessage() {
+        const chatArea = document.getElementById('chatArea');
+        const initialMessage = "Send button click pannu continue va enjoy pannu"; // Default initial message
+        
+        // Create and append the initial message aligned to the left
+        const message = document.createElement('div');
+        message.className = 'flex justify-start';  // Align the message to the left
+        message.innerHTML = `
+          <div class="text-white p-3 rounded-lg max-w-xs res">
+            <div>${initialMessage}</div>
+            <div class="text-right text-xs text-gray-400">5:05 PM</div>
+          </div>
+        `;
+        chatArea.appendChild(message);
+        chatArea.scrollTop = chatArea.scrollHeight;
+      }
+
+      // Call initMessage when the page is loaded
+      window.onload = initMessage;
+    </script>
+  
+    <style>
+      body {
+        background-image: url('bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed; /* Ensure the image stays fixed */
+        overflow: hidden; /* Prevent scrolling */
+        height: 100vh; /* Ensure the body covers the full height of the screen */
+        filter: opacity(9);
+        scrollbar-width: none;
+        scrollbar-width: none;
+
+      }
+      
+      .send {
+        background-color: #144d37;
+      }
+  
+      .res {
+        background-color: #363636;
+      }
+
+      .hd , 
+      .in{
+        background-color: #2c2c2c;
+      }
+      .cont{
+        background-color: #3e3e3eee;
+        padding: 10px;
+        letter-spacing: 10px;
+        border-radius: 8px;
+        scrollbar-width: none;
+
+      }
+
+      .vid{
+        margin-left: 10px;
+      }
+
+      .btns{
+        font-size: 20px;
+      }
+
+      img{
+        border: 1.5px solid #fff;
+      }
+    </style>
+  </head>
+  <body class="text-white font-sans">
+    <div class="flex flex-col h-screen">
+      <!-- Header -->
+      <div class="flex items-center justify-between p-4 hd">
+        <div class="flex items-center space-x-4">
+         
+          <img alt="Profile picture" class="rounded-full w-10 h-10" height="40" src="bg2.jpg" width="40"/>
+          <div>
+            <div class="font-bold">Mental❣️</div>
+            <div class="text-sm text-gray-400">Online</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4 btns">
+            <div class="cont">
+                <i class="fas fa-video text-white vid"></i>
+          <i class="fas fa-phone text-white"></i>
+            </div>
+            <i class="fa-solid fa-magnifying-glass text-white"></i>
+          
+        </div>
+      </div>
+  
+      <!-- Chat Area -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-4" id="chatArea">
+        <!-- Initial message will be added here -->
+      </div>
+  
+      <!-- Input Area -->
+      <div class="flex items-center in p-4">
+        <i class="fas fa-smile text-gray-400 text-2xl"></i>
+        <input class="flex-1 bg-gray-700 text-white p-2 mx-4 rounded-lg" id="messageInput" placeholder="Message" type="text" value="mm mm aprm"/>
+        <i class="fas fa-paperclip text-gray-400 text-2xl"></i>
+        <i class="fa-solid fa-indian-rupee-sign text-gray-400 text-2xl mx-4"></i>
+        <i class="fa-solid fa-paper-plane text-green-500 text-2xl" onclick="checkMessage()"></i>
+      </div>
+    </div>
+  </body>
+</html>
